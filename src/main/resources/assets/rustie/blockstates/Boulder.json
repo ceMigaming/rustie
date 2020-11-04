@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": {
+            "model": "rustie:boulder"
+        },
+        "inventory": {
+            "model": "rustie:boulder",
+            "transform": "forge:default-block"
+        }
+    }
+}

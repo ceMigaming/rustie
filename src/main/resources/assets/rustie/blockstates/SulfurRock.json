@@ -1,0 +1,12 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": {
+            "model": "rustie:sulfurRock"
+        },
+        "inventory": {
+            "model": "rustie:sulfurRock",
+            "transform": "forge:default-block"
+        }
+    }
+}

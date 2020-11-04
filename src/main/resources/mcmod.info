@@ -1,0 +1,16 @@
+[
+{
+  "modid": "rustie",
+  "name": "Rustie",
+  "description": "Rust mod for minecraft",
+  "version": "1.3",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ceMi"],
+  "credits": "The Forge and FML guys",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

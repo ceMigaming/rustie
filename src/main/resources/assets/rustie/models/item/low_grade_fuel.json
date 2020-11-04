@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "rustie:items/resources/low_grade_fuel"
+    }
+}

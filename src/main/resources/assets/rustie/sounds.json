@@ -1,0 +1,241 @@
+{
+    "akShoot": {
+        "category": "master",
+        "sounds": ["rustie:akShoot"],
+        "stream": false
+    },
+    
+    "akReload": {
+        "category": "master",
+        "sounds": ["rustie:akReload"],
+        "stream": false
+    },
+    
+    "boltRifleShoot": {
+        "category": "master",
+        "sounds": ["rustie:boltRifleShoot"],
+        "stream": false
+    },
+    
+    "boltRifleReload": {
+        "category": "master",
+        "sounds": ["rustie:boltRifleReload"],
+        "stream": false
+    },
+    
+    "customSMGShoot": {
+        "category": "master",
+        "sounds": ["rustie:customSMGShoot"],
+        "stream": false
+    },
+    
+    "customSMGReload": {
+        "category": "master",
+        "sounds": ["rustie:mp5Reload"],
+        "stream": false
+    },
+    
+    "doubleBarrelShoot": {
+        "category": "master",
+        "sounds": ["rustie:doubleBarrelShoot"],
+        "stream": false
+    },
+    
+    "doubleBarrelReload": {
+        "category": "master",
+        "sounds": ["rustie:doubleBarrelReload"],
+        "stream": false
+    },
+    
+    "eokaShoot": {
+        "category": "master",
+        "sounds": ["rustie:eokaShoot"],
+        "stream": false
+    },
+    
+    "eokaReload": {
+        "category": "master",
+        "sounds": ["rustie:eokaReload"],
+        "stream": false
+    },
+    
+    "l96Shoot": {
+        "category": "master",
+        "sounds": ["rustie:l96Shoot"],
+        "stream": false
+    },
+    
+    "l96Reload": {
+        "category": "master",
+        "sounds": ["rustie:l96Reload"],
+        "stream": false
+    },
+    
+    "lr300Shoot": {
+        "category": "master",
+        "sounds": ["rustie:lr300Shoot"],
+        "stream": false
+    },
+    
+    "lr300Reload": {
+        "category": "master",
+        "sounds": ["rustie:lr300Reload"],
+        "stream": false
+    },
+    
+    "m39Shoot": {
+        "category": "master",
+        "sounds": ["rustie:m39Shoot"],
+        "stream": false
+    },
+    
+    "m39Reload": {
+        "category": "master",
+        "sounds": ["rustie:m39Reload"],
+        "stream": false
+    },
+    
+    "m92Shoot": {
+        "category": "master",
+        "sounds": ["rustie:M92Shoot"],
+        "stream": false
+    },
+    
+    "m92Reload": {
+        "category": "master",
+        "sounds": ["rustie:m92Reload"],
+        "stream": false
+    },
+    
+    "m249Shoot": {
+        "category": "master",
+        "sounds": ["rustie:m249Shoot"],
+        "stream": false
+    },
+    
+    "m249Reload": {
+        "category": "master",
+        "sounds": ["rustie:m249Reload"],
+        "stream": false
+    },
+    
+    "mp5Shoot": {
+        "category": "master",
+        "sounds": ["rustie:mp5Shoot"],
+        "stream": false
+    },
+    
+    "mp5Reload": {
+        "category": "master",
+        "sounds": ["rustie:mp5Reload"],
+        "stream": false
+    },
+    
+    "nailGunShoot": {
+        "category": "master",
+        "sounds": ["rustie:nailGunShoot"],
+        "stream": false
+    },
+    
+    "nailGunReload": {
+        "category": "master",
+        "sounds": ["rustie:nailGunReload"],
+        "stream": false
+    },
+    
+    "pumpShotgunShoot": {
+        "category": "master",
+        "sounds": ["rustie:pumpShotgunShoot"],
+        "stream": false
+    },
+    
+    "pumpShotgunReload": {
+        "category": "master",
+        "sounds": ["rustie:pumpShotgunReload"],
+        "stream": false
+    },
+    
+    "pythonShoot": {
+        "category": "master",
+        "sounds": ["rustie:pythonShoot"],
+        "stream": false
+    },
+    
+    "pythonReload": {
+        "category": "master",
+        "sounds": ["rustie:pythonReload"],
+        "stream": false
+    },
+    
+    "revolverShoot": {
+        "category": "master",
+        "sounds": ["rustie:revolverShoot"],
+        "stream": false
+    },
+    
+    "revolverReload": {
+        "category": "master",
+        "sounds": ["rustie:revolverReload"],
+        "stream": false
+    },
+    
+    "SAPistolShoot": {
+        "category": "master",
+        "sounds": ["rustie:m92Shoot"],
+        "stream": false
+    },
+    
+    "SAPistolReload": {
+        "category": "master",
+        "sounds": ["rustie:m92Reload"],
+        "stream": false
+    },
+    
+    "semiAutoRifleShoot": {
+        "category": "master",
+        "sounds": ["rustie:semiAutoRifleShoot"],
+        "stream": false
+    },
+    
+    "semiAutoRifleReload": {
+        "category": "master",
+        "sounds": ["rustie:lr300Reload"],
+        "stream": false
+    },
+    
+    "spas12Shoot": {
+        "category": "master",
+        "sounds": ["rustie:spas12Shoot"],
+        "stream": false
+    },
+    
+    "spas12Reload": {
+        "category": "master",
+        "sounds": ["rustie:spas12Reload"],
+        "stream": false
+    },
+    
+    "thompsonShoot": {
+        "category": "master",
+        "sounds": ["rustie:thompsonShoot"],
+        "stream": false
+    },
+    
+    "thompsonReload": {
+        "category": "master",
+        "sounds": ["rustie:thompsonReload"],
+        "stream": false
+    },
+    
+    "waterpipeShotgunShoot": {
+        "category": "master",
+        "sounds": ["rustie:waterpipeShotgunShoot"],
+        "stream": false
+    },
+    
+    "waterpipeShotgunReload": {
+        "category": "master",
+        "sounds": ["rustie:waterpipeShotgunReload"],
+        "stream": false
+    }
+}

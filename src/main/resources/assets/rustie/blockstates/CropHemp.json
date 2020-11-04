@@ -1,0 +1,50 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cross"
+	},
+	"variants": {
+		"age": {
+			"0": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/0"
+				}
+			},
+			"1": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/1"
+				}
+			},
+			"2": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/2"
+				}
+			},
+			"3": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/3"
+				}
+			},
+			"4": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/4"
+				}
+			},
+			"5": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/5"
+				}
+			},
+			"6": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/6"
+				}
+			},
+			"7": {
+				"textures": {
+					"cross": "rustie:blocks/hemp/7"
+				}
+			}
+		}
+	}
+}
