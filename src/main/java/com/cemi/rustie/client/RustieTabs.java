@@ -36,7 +36,14 @@ public abstract class RustieTabs extends CreativeTabs {
             return new ItemStack(RustieItems.targetingComputer);
         }
     };
-    
+    public static final RustieTabs WEAPONS = new RustieTabs("weapons")
+    {
+    	@Override
+        public ItemStack getTabIconItem()
+        {
+            return new ItemStack(RustieItems.M92Pistol);
+        }
+    };
 	public RustieTabs(String label) {
 		super(Rustie.MODID + "." + label);
 	}

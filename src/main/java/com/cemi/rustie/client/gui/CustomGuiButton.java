@@ -126,4 +126,8 @@ public class CustomGuiButton extends GuiButton
     	this.pressed = true;
     	return super.mousePressed(mc, mouseX, mouseY);
     }
+    
+    public boolean isHovered() {
+		return this.hovered;
+	}
 }

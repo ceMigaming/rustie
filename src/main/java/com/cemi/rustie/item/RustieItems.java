@@ -68,7 +68,15 @@ public class RustieItems {
 	/************************ Armor **************************/
 	// Burlap
 	public static ItemArmor burlapHelmet = (ItemArmor) new ItemArmor(Rustie.burlapArmorMaterial, EntityEquipmentSlot.HEAD, "burlap_helmet").setCreativeTab(CreativeTabs.COMBAT);
+	//public static ItemArmor burlapArmor = (ItemArmor) new ItemArmor(Rustie.burlapArmorMaterial, EntityEquipmentSlot.CHEST, "burlap_chestplate").setCreativeTab(CreativeTabs.COMBAT);
+	//public static ItemArmor burlapLeggings = (ItemArmor) new ItemArmor(Rustie.burlapArmorMaterial, EntityEquipmentSlot.LEGS, "burlap_leggings").setCreativeTab(CreativeTabs.COMBAT);
+	//public static ItemArmor burlapBoots = (ItemArmor) new ItemArmor(Rustie.burlapArmorMaterial, EntityEquipmentSlot.FEET, "burlap_boots").setCreativeTab(CreativeTabs.COMBAT);
 	
+	
+	
+	/*********************** Weapons *************************/
+	// TEST
+	public static GunBase M92Pistol = new GunBase("m92pistol");
 	
 	public static void register(IForgeRegistry<Item> registry) {
 		registry.registerAll(
@@ -122,7 +130,13 @@ public class RustieItems {
 			medicalSyringe,
 			
 			// Armor
-			burlapHelmet
+			burlapHelmet,
+			//burlapArmor,
+			//burlapLeggings,
+			//burlapBoots,
+						
+			// Weapons
+			M92Pistol
 		);
 	}
 	
@@ -178,6 +192,12 @@ public class RustieItems {
 
 		// Armor
 		burlapHelmet.registerItemModel();
+		//burlapArmor.registerItemModel();
+		//burlapLeggings.registerItemModel();
+		//burlapBoots.registerItemModel();
+		
+		// Weapons
+		M92Pistol.registerItemModel();
 	}
 	
 }

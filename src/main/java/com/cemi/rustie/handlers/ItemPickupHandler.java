@@ -1,12 +1,9 @@
 package com.cemi.rustie.handlers;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.cemi.rustie.item.ItemBase;
+import com.cemi.rustie.utility.ItemFinder;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
@@ -21,7 +18,7 @@ public class ItemPickupHandler {
 		ItemStack stack = event.getItem().getItem();
 		EntityPlayer player = event.getEntityPlayer();
 		if(stack.getItem() instanceof ItemBase) {
-			int slot = findItem(player.inventory, stack);
+			int slot = ItemFinder.findItem(player.inventory, stack);
 			NBTTagCompound nbt;
 			if(slot != -1) {
 				ItemStack inventoryStack = player.inventory.getStackInSlot(slot);
@@ -98,13 +95,5 @@ public class ItemPickupHandler {
 		 */
 	}
 	
-	private static int findItem(InventoryPlayer inventory, ItemStack itemStackIn)
-	{
-        for (int i = 0; i < 36; i++)
-        {
-        	if(!inventory.getStackInSlot(i).isEmpty() && inventory.getStackInSlot(i).isItemEqual(itemStackIn))
-        		return i;
-        }
-        return -1;
-	}
+	
 }

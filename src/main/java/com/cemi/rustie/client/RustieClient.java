@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class RustieClient {
+	
 	@SubscribeEvent
 	public static void openGui(GuiOpenEvent event)
 	{
