@@ -45,7 +45,7 @@ public class GunBase extends ItemBase {
 			//if(!((EntityPlayer)playerIn).capabilities.isCreativeMode) itemstack.shrink(1);
 	        //worldIn.playSound(playerIn, playerIn.getPosition(), new SoundEvent(new ResourceLocation(Rustie.MODID, "test")), SoundCategory.PLAYERS, 0.5F, 1.0F); 
 	        if (!playerIn.world.isRemote) {
-	        	EntityBullet entityBullet = new EntityBullet(playerIn.world, playerIn.posX + playerIn.getLookVec().x * 1.5, playerIn.posY + (double)playerIn.getEyeHeight() - 0.5D, playerIn.posZ + playerIn.getLookVec().z * 1.5);
+	        	EntityBullet entityBullet = new EntityBullet(playerIn.world, playerIn, playerIn.posX + playerIn.getLookVec().x * .5, playerIn.posY + (double)playerIn.getEyeHeight() - 0.5D, playerIn.posZ + playerIn.getLookVec().z * .5);
 	        	entityBullet.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 0.5F, 1.0F);
 	        	//entityBullet.rotationPitch = 180F;
 	        	playerIn.world.spawnEntity(entityBullet);

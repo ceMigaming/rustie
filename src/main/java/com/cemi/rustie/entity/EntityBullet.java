@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityBullet extends EntityThrowable {
 	
-	private BlockPos blockPos;
+	EntityLivingBase thrower;
 	
     public EntityBullet(World worldIn)
     {
@@ -30,25 +30,14 @@ public class EntityBullet extends EntityThrowable {
     public EntityBullet(World worldIn, EntityLivingBase throwerIn)
     {
         super(worldIn, throwerIn);
+        thrower = throwerIn;
     }
 
-    public EntityBullet(World worldIn, double x, double y, double z)
+    public EntityBullet(World worldIn, EntityLivingBase throwerIn, double x, double y, double z)
     {
         super(worldIn, x, y, z);
+        thrower = throwerIn;
     }
-
-    @SideOnly(Side.CLIENT)
-    public void handleStatusUpdate(byte id)
-    {
-        if (id == 3)
-        {
-            for (int i = 0; i < 8; ++i)
-            {
-                //this.world.spawnParticle(EnumParticleTypes.LAVA, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
-    
     protected void onHitBlock(IBlockState state, BlockPos pos, double x, double y, double z)
     {
     	if(!this.world.isRemote)
@@ -57,13 +46,14 @@ public class EntityBullet extends EntityThrowable {
 
     protected void onImpact(RayTraceResult result)
     {
+    	if(result.entityHit == thrower) return;
+    	
     	if(result.getBlockPos() != null)
 	        this.onHitBlock(world.getBlockState(result.getBlockPos()), result.getBlockPos(), result.hitVec.x, result.hitVec.y, result.hitVec.z);
 
         if (!this.world.isRemote)
         {
-        	//this.world.setEntityState(this, (byte)3);
-            //this.setDead();
+            this.setDead();
         }
         
     }
