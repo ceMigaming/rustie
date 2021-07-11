@@ -1,20 +1,24 @@
 package com.cemi.rustie;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import com.cemi.rustie.client.render.entity.RenderBulletEntity;
-import com.cemi.rustie.entity.EntityBullet;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
+
+import com.cemi.rustie.blocks.RustieBlocks;
+import com.cemi.rustie.entity.RustieEntities;
 import com.cemi.rustie.handlers.ItemPickupHandler;
 import com.cemi.rustie.handlers.RustiePacketHandler;
 import com.cemi.rustie.item.RustieItems;
 import com.google.common.collect.Maps;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.block.Block;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,8 +28,6 @@ import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RequiresMcRestart;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -34,13 +36,15 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 @Mod(modid = Rustie.MODID, version = Rustie.VERSION)
 public class Rustie
 {
     public static final String MODID = "rustie";
     public static final String VERSION = "1.0";
+    
+    public static int RecipesCount = 0;
     
     @SidedProxy(serverSide = "com.cemi.rustie.CommonProxy", clientSide = "com.cemi.rustie.client.ClientProxy")
     public static CommonProxy proxy;
@@ -57,10 +61,31 @@ public class Rustie
     	
     }
     
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
+	@EventHandler
+    public void init(FMLInitializationEvent event) throws Exception {
         MinecraftForge.EVENT_BUS.register(ItemPickupHandler.class);
         
+        for (int i = 0; i < RecipesCount; i++) {
+        	String[] recipes = Configs.RECIPES.get(Integer.toString(i)).replaceAll(" ", "").split(",");
+        	List<Pair<ItemStack, Integer>> pairs = new ArrayList<>();
+        	int firstJ = recipes.length % 2 == 1 ? 3 : 2;
+        	for (int j = firstJ; j < recipes.length-firstJ+2; j+=2) {
+        		ResourceLocation rl = new ResourceLocation(MODID, recipes[j]);
+        		if(!ForgeRegistries.ITEMS.containsKey(rl))
+        			throw new Exception("Incorrect input item: " + rl);
+        		pairs.add(Pair.of(new ItemStack(ForgeRegistries.ITEMS.getValue(rl)), Integer.parseInt(recipes[j+1])));
+        	}
+        	ResourceLocation rl = new ResourceLocation(MODID, recipes[0]);
+        	if(!ForgeRegistries.ITEMS.containsKey(rl))
+    			throw new Exception("Incorrect ouput item: " + rl);
+        	
+        	if (recipes.length % 2 == 1) {
+        		CraftingRegistry.registerRecipe(Triple.of(new ItemStack(ForgeRegistries.ITEMS.getValue(rl)), Integer.parseInt(recipes[1]), recipes[2]), pairs);
+        	}
+        	else {
+        		CraftingRegistry.registerRecipe(Pair.of(new ItemStack(ForgeRegistries.ITEMS.getValue(rl)), Integer.parseInt(recipes[1])), pairs);
+        	}
+        }
         
     }
     
@@ -76,53 +101,44 @@ public class Rustie
     	@SubscribeEvent
 		public static void registerItems(RegistryEvent.Register<Item> event) {
     		RustieItems.register(event.getRegistry());
+    		RustieBlocks.registerItemBlocks(event.getRegistry());
     		CraftingRegistry.registerRecipes();
 		}
     	
     	@SubscribeEvent
-    	public static void registerItems(ModelRegistryEvent event) {
+    	public static void registerModels(ModelRegistryEvent event) {
     		RustieItems.registerModels();
+    		RustieBlocks.registerModels();
     	}
     	
     	@SubscribeEvent
-        public static void entityRegistration(RegistryEvent.Register<EntityEntry> event) {
-            event.getRegistry().register(EntityEntryBuilder.create().entity(EntityBullet.class).tracker(160, 1, true)
-                    .id(new ResourceLocation(MODID, "bullet"), 33).name("bullet").build());
-            System.out.println("Entries registered");
-            
-            RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new IRenderFactory<EntityBullet>() {
-    			@Override
-    			public Render<? super EntityBullet> createRenderFor(RenderManager manager)
-    			{
-    				return new RenderBulletEntity(manager);
-    			}
-    		});
+    	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+    		RustieBlocks.register(event.getRegistry());
+    	}
+    	
+    	@SubscribeEvent
+        public static void registerEntity(RegistryEvent.Register<EntityEntry> event) {
+            RustieEntities.register(event.getRegistry());
         }
+    	
+    	
 	}
+    
+    
     
     @Config(modid = "rustie")
     public static class Configs {
-    	@Name("map")
-        @Comment("This comment belongs to the \"map\" category, not the \"general\" category")
+    	@Name("Craftings")
+        @Comment("Add craftings here in the format: <outputItem, outputCount, description, inputItem1, input1Count, inputItem2, input2Count, ... inputItemN, inputNCount")
         @RequiresMcRestart
-        public static Map<String, Integer[]> theMap;
-
-        @Name("regex(test]")
-        public static Map<String, String> regexText = new HashMap<>();
-
+        public static Map<String, String> RECIPES;
+    	
         static
         {
-            theMap = Maps.newHashMap();
-            for (int i = 0; i < 7; i++)
-            {
-                Integer[] array = new Integer[6];
-                for (int x = 0; x < array.length; x++)
-                {
-                    array[x] = i + x;
-                }
-                theMap.put("" + i, array);
-                regexText.put("" + i, "" + i);
-            }
+        	RECIPES = Maps.newHashMap();
+        	RECIPES.put("" + RecipesCount++, "burlap_helmet, 1, cloth, 10");
+        	RECIPES.put("" + RecipesCount++, "bandage, 1, cloth, 4");
+        	RECIPES.put("" + RecipesCount++, "low_grade_fuel, 4, animal_fat, 3, cloth, 1");
         }
     }
 }

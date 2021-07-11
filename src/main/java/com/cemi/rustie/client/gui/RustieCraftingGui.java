@@ -6,14 +6,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
-import org.jline.terminal.MouseEvent.Button;
 import org.lwjgl.input.Mouse;
 
 import com.cemi.rustie.CraftingRegistry;
 import com.cemi.rustie.Rustie;
-import com.cemi.rustie.Packets.MessageCraftItem;
 import com.cemi.rustie.handlers.RustiePacketHandler;
-import com.cemi.rustie.utility.ItemFinder;
+import com.cemi.rustie.packets.MessageCraftItem;
+import com.cemi.rustie.utility.InventoryUtilities;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -40,14 +39,14 @@ public class RustieCraftingGui extends GuiContainer
 {
 	protected static final ResourceLocation BUTTON_TEXTURES = new ResourceLocation(Rustie.MODID, "textures/gui/buttons.png");
     /** The old x position of the mouse pointer */
-    private float oldMouseX;
+    //private float oldMouseX;
     /** The old y position of the mouse pointer */
-    private float oldMouseY;
+    //private float oldMouseY;
     
     private CustomGuiButton testButton;
     private final GuiRecipeBook recipeBookGui = new GuiRecipeBook();
     private boolean widthTooNarrow;
-    private boolean buttonClicked;
+    //private boolean buttonClicked;
     
     private List<CustomGuiButton> otherButtons = new ArrayList<>();
     private List<CustomGuiButton> tabButtons = new ArrayList<>();
@@ -60,8 +59,6 @@ public class RustieCraftingGui extends GuiContainer
     
     private float itemXSize;
     private float itemYSize;
-    private boolean mousePressed = false;
-    
     private int firstBtnIndex = 1;
     
     private craftingTab currentTab = craftingTab.COMMON;
@@ -232,8 +229,9 @@ public class RustieCraftingGui extends GuiContainer
         		GlStateManager.popMatrix();
         		drawCenteredString(fontRenderer, output.getLeft().getDisplayName(), (width * 18 / 19) - ((width * 18 / 19) - (width / 2 + 1))/2, iconY, 0xFFFFFFFF);
         		fontRenderer.drawString(output.getRight(), iconX, (int)(iconY + 16 * scale) + 2, 0xFFFFFFFF);
-        		int slot = ItemFinder.findItem(mc.player.inventory, ingredients.get(i2).getLeft());
+        		int slot = InventoryUtilities.findItem(mc.player.inventory, ingredients.get(i2).getLeft());
         		fontRenderer.drawString(ingredients.get(i2).getRight() + "x", width / 2 + 1 + 2, 2 + height / 15 + 2 + (int)(height / 2.5) + 4 + height / 10 + i2 * 10, slot != -1 ? 0xFFFFFFFF : 0xFFFF0000);
+        		
         		fontRenderer.drawString(ingredients.get(i2).getLeft().getDisplayName(), width / 2 + 1 + 22, 2 + height / 15 + 2 + (int)(height / 2.5) + 4 + height / 10 + i2 * 10, slot != -1 ? 0xFFFFFFFF : 0xFFFF0000);
         	}
         }
@@ -271,7 +269,6 @@ public class RustieCraftingGui extends GuiContainer
      */
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-    	this.mousePressed = true;
     	if (mouseButton == 0) {
             for (int i = 0; i < this.buttonList.size(); ++i) {
                 GuiButton guibutton = this.buttonList.get(i);
@@ -297,7 +294,6 @@ public class RustieCraftingGui extends GuiContainer
      */
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
-    	this.mousePressed = false;
     	if (this.selectedButton != null && state == 0) {
             this.selectedButton.mouseReleased(mouseX, mouseY);
             this.selectedButton = null;

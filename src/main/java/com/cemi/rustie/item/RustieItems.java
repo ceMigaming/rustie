@@ -75,8 +75,11 @@ public class RustieItems {
 	
 	
 	/*********************** Weapons *************************/
-	// TEST
+	// Guns
 	public static GunBase M92Pistol = new GunBase("m92pistol");
+	
+	/************************ Tools **************************/
+	public static ItemBase rock = new ToolItem("rock", 10, 5, 10, 1).setCreativeTab(RustieTabs.TOOLS);
 	
 	public static void register(IForgeRegistry<Item> registry) {
 		registry.registerAll(
@@ -136,7 +139,10 @@ public class RustieItems {
 			//burlapBoots,
 						
 			// Weapons
-			M92Pistol
+			M92Pistol,
+			
+			// Tools
+			rock
 		);
 	}
 	
@@ -198,6 +204,10 @@ public class RustieItems {
 		
 		// Weapons
 		M92Pistol.registerItemModel();
+		
+
+		// Tools
+		rock.registerItemModel();
 	}
 	
 }

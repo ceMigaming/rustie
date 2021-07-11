@@ -1,4 +1,4 @@
-package com.cemi.rustie.Packets;
+package com.cemi.rustie.packets;
 
 import java.util.List;
 
@@ -6,13 +6,10 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
 import com.cemi.rustie.CraftingRegistry;
-import com.cemi.rustie.item.ItemBase;
-import com.cemi.rustie.item.RustieItems;
-import com.cemi.rustie.utility.ItemFinder;
+import com.cemi.rustie.utility.InventoryUtilities;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -37,11 +34,11 @@ public class MessageCraftItem implements IMessage, IMessageHandler<MessageCraftI
 		EntityPlayerMP player = ctx.getServerHandler().player;
 		
 		for(Pair<ItemStack, Integer> currentPair : materials)
-			if(ItemFinder.findItem(player.inventory, currentPair.getLeft()) == -1)
+			if(InventoryUtilities.findItem(player.inventory, currentPair.getLeft()) == -1)
 				return null;
 			else
 			{
-				int slot = ItemFinder.findItem(player.inventory, currentPair.getLeft());
+				int slot = InventoryUtilities.findItem(player.inventory, currentPair.getLeft());
 				ItemStack itemStack = player.inventory.getStackInSlot(slot);
 				if(itemStack.getTagCompound().getInteger("rustieCount") < currentPair.getRight()) 
 					return null;
@@ -54,7 +51,7 @@ public class MessageCraftItem implements IMessage, IMessageHandler<MessageCraftI
 		if(emptySlot == -1) return null;
 		
 		for(Pair<ItemStack, Integer> currentPair : materials) {
-			int slot = ItemFinder.findItem(player.inventory, currentPair.getLeft());
+			int slot = InventoryUtilities.findItem(player.inventory, currentPair.getLeft());
 			ItemStack itemStack = player.inventory.getStackInSlot(slot);
 			if(itemStack.getTagCompound().getInteger("rustieCount") > currentPair.getRight()) {
 				itemStack.getTagCompound().setInteger("rustieCount", itemStack.getTagCompound().getInteger("rustieCount") - currentPair.getRight());
@@ -66,7 +63,7 @@ public class MessageCraftItem implements IMessage, IMessageHandler<MessageCraftI
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setInteger("rustieCount", output.getMiddle());
 			outputStack.setTagCompound(nbt);
-			int outputSlot = ItemFinder.findItem(player.inventory, outputStack);
+			int outputSlot = InventoryUtilities.findItem(player.inventory, outputStack);
 			System.out.println("test");
 			if(outputSlot == -1)
 				player.inventory.addItemStackToInventory(outputStack);

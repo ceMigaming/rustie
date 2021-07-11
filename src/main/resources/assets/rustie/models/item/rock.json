@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "rustie:items/rockItem",
-		"particle": "rustie:items/rockItem"
+		"0": "rustie:items/rock",
+		"particle": "rustie:items/rock"
 	},
 	"elements": [
 		{

@@ -5,14 +5,11 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 import com.cemi.rustie.Rustie;
 import com.cemi.rustie.item.ItemBase;
-import com.google.common.collect.Lists;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonImage;
@@ -24,7 +21,6 @@ import net.minecraft.client.gui.recipebook.GuiRecipeBook;
 import net.minecraft.client.gui.recipebook.IRecipeShownListener;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.InventoryEffectRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -38,16 +34,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.client.CPacketClickWindow;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.reflect.macros.compiler.DefaultMacroCompiler.MacroImplResolutionException;
 
 @SideOnly(Side.CLIENT)
 public class RustieGuiInventory extends GuiContainer implements IRecipeShownListener
@@ -62,7 +55,7 @@ public class RustieGuiInventory extends GuiContainer implements IRecipeShownList
     private CustomGuiButton testButton;
     private final GuiRecipeBook recipeBookGui = new GuiRecipeBook();
     private boolean widthTooNarrow;
-    private boolean buttonClicked;
+    //private boolean buttonClicked;
     
     private float itemScale;
     

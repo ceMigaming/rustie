@@ -1,11 +1,10 @@
 package com.cemi.rustie.handlers;
 
 import com.cemi.rustie.Rustie;
-import com.cemi.rustie.Packets.MessageCraftItem;
+import com.cemi.rustie.packets.MessageCraftItem;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class RustiePacketHandler {
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Rustie.MODID);
@@ -20,6 +19,7 @@ public class RustiePacketHandler {
 		registerMessage(MessageCraftItem.class, Side.SERVER);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	private static void registerMessage(Class packet, Side side)
 	{
         if (side != Side.CLIENT)
@@ -29,7 +29,8 @@ public class RustiePacketHandler {
             registerMessage(packet, net.minecraftforge.fml.relauncher.Side.CLIENT);
     }
 
-    private static void registerMessage(Class packet, net.minecraftforge.fml.relauncher.Side side) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private static void registerMessage(Class packet, net.minecraftforge.fml.relauncher.Side side) {
         INSTANCE.registerMessage(packet, packet, msgid++, side);
     }
 }

@@ -1,12 +1,21 @@
 {
-    "forge_marker": 1,
-    "variants": {
-        "normal": {
+	"forge_marker": 1,
+    "variants": 
+    {
+        "type=0": 
+        {
             "model": "rustie:boulder"
         },
+        "type=1": 
+        {
+        	"model": "rustie:sulfur_rock"
+        },
+        "type=2": 
+        {
+        	"model": "rustie:ore_metal"
+        },
         "inventory": {
-            "model": "rustie:boulder",
-            "transform": "forge:default-block"
-        }
+			"model": "rustie:boulder"
+		}
     }
 }

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "rustie:block/boulder",
-		"particle": "rustie:block/boulder"
+		"0": "rustie:block/sulfur_rock",
+		"particle": "rustie:block/sulfur_rock"
 	},
 	"elements": [
 		{

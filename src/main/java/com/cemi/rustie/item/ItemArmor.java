@@ -3,7 +3,6 @@ package com.cemi.rustie.item;
 import com.cemi.rustie.Rustie;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 
 public class ItemArmor extends net.minecraft.item.ItemArmor {
 

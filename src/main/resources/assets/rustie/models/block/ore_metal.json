@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "rustie:block/boulder",
-		"particle": "rustie:block/boulder"
+		"0": "rustie:block/ore_metal",
+		"particle": "rustie:block/ore_metal"
 	},
 	"elements": [
 		{

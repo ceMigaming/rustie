@@ -1,13 +1,10 @@
 package com.cemi.rustie;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
-
-import com.cemi.rustie.item.RustieItems;
 
 import net.minecraft.item.ItemStack;
 
@@ -31,21 +28,18 @@ public class CraftingRegistry {
 		return OUTPUTS.size();
 	}
 	
-	@SafeVarargs
-	public static void registerRecipe(Triple<ItemStack, Integer, String> output, Pair<ItemStack, Integer> ... pairs) {
+	public static void registerRecipe(Triple<ItemStack, Integer, String> output, List<Pair<ItemStack, Integer>> pairs) {
 		OUTPUTS.add(output);
-		RECIPES.add(Arrays.asList(pairs));
+		RECIPES.add(pairs);
 	}
 	
-	@SafeVarargs
-	public static void registerRecipe(Pair<ItemStack, Integer> output, Pair<ItemStack, Integer> ... pairs) {
+	public static void registerRecipe(Pair<ItemStack, Integer> output, List<Pair<ItemStack, Integer>> pairs) {
 		OUTPUTS.add(Triple.of(output.getLeft(), output.getRight(), "No description available"));
-		RECIPES.add(Arrays.asList(pairs));
+		RECIPES.add(pairs);
 	}
 	
 	public static void registerRecipes() {
-		registerRecipe(Pair.of(new ItemStack(RustieItems.bandage), 1),  Pair.of(new ItemStack(RustieItems.cloth), 4));
-		registerRecipe(Pair.of(new ItemStack(RustieItems.lowGradeFuel), 4),  Pair.of(new ItemStack(RustieItems.animalFat), 3), Pair.of(new ItemStack(RustieItems.cloth), 1));
+		
 	}
 	
 }
