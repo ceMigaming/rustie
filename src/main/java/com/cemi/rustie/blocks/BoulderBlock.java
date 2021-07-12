@@ -32,8 +32,6 @@ public class BoulderBlock extends TileEntityBase<TileEntityBreakable> {
 	/// salvaged axe -> tree = 10 hits // (crits) = 10 hits?
 	/// stone axe -> tree 40 hits // (crits) = 17 hits?
 	/// rock -> tree = 25 hits // (crits) = 25 hits
-	
-	
 
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -58,57 +56,37 @@ public class BoulderBlock extends TileEntityBase<TileEntityBreakable> {
 
 	@Override
 	public TileEntityBreakable createTileEntity(World world, IBlockState state) {
-		return new TileEntityBreakable(50, damageType.generic);
+		return new TileEntityBreakable(500, damageType.generic);
 	};
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
 			EnumFacing side, float hitX, float hitY, float hitZ) {
 		/*
-		Item item = player.getHeldItem(EnumHand.MAIN_HAND).getItem();
-		if (!world.isRemote) {
-			TileEntityBoulder tile = getTileEntity(world, pos);
-			if (item instanceof ToolItem) {
-				if (!player.getCooldownTracker().hasCooldown(item)) {
-					player.getCooldownTracker().setCooldown(item, 20 * 2);
-					tile.decrementDamage();
-					if (tile.getHealth() < 0) {
-						world.removeTileEntity(pos);
-						world.destroyBlock(pos, false);
-					}
-				} else {
-					player.swingProgressInt = 0;
-					ItemRenderer IR = Minecraft.getMinecraft().entityRenderer.itemRenderer;
-					try {
-						float a1 = 1F;
-						{
-							Field field = ItemRenderer.class.getDeclaredField("equippedProgressMainHand");
-							field.setAccessible(true);
-							field.setFloat(IR, a1);
-						}
-						{
-							Field field = ItemRenderer.class.getDeclaredField("prevEquippedProgressMainHand");
-							field.setAccessible(true);
-							field.setFloat(IR, a1);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-				}
-				player.sendMessage(new TextComponentString("Hp: " + tile.getHealth()));
-			}
-		}
-
-		if (item instanceof ToolItem) {
-			if (!player.getCooldownTracker().hasCooldown(item)) {
-				((ToolItem) item).enableSwing(false);
-			} else {
-				((ToolItem) item).enableSwing(true);
-			}
-
-		}
-		*/
+		 * Item item = player.getHeldItem(EnumHand.MAIN_HAND).getItem(); if
+		 * (!world.isRemote) { TileEntityBoulder tile = getTileEntity(world, pos); if
+		 * (item instanceof ToolItem) { if
+		 * (!player.getCooldownTracker().hasCooldown(item)) {
+		 * player.getCooldownTracker().setCooldown(item, 20 * 2);
+		 * tile.decrementDamage(); if (tile.getHealth() < 0) {
+		 * world.removeTileEntity(pos); world.destroyBlock(pos, false); } } else {
+		 * player.swingProgressInt = 0; ItemRenderer IR =
+		 * Minecraft.getMinecraft().entityRenderer.itemRenderer; try { float a1 = 1F; {
+		 * Field field =
+		 * ItemRenderer.class.getDeclaredField("equippedProgressMainHand");
+		 * field.setAccessible(true); field.setFloat(IR, a1); } { Field field =
+		 * ItemRenderer.class.getDeclaredField("prevEquippedProgressMainHand");
+		 * field.setAccessible(true); field.setFloat(IR, a1); } } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 * 
+		 * } player.sendMessage(new TextComponentString("Hp: " + tile.getHealth())); } }
+		 * 
+		 * if (item instanceof ToolItem) { if
+		 * (!player.getCooldownTracker().hasCooldown(item)) { ((ToolItem)
+		 * item).enableSwing(false); } else { ((ToolItem) item).enableSwing(true); }
+		 * 
+		 * }
+		 */
 		return true;
 	}
 

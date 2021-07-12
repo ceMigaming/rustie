@@ -79,7 +79,7 @@ public class RustieItems {
 	public static GunBase M92Pistol = new GunBase("m92pistol");
 	
 	/************************ Tools **************************/
-	public static ItemBase rock = new ToolItem("rock", 10, 5, 10, 1).setCreativeTab(RustieTabs.TOOLS);
+	public static ItemBase rock = new ToolItem("rock", 10, 5, 10, 46).setCreativeTab(RustieTabs.TOOLS);
 	
 	public static void register(IForgeRegistry<Item> registry) {
 		registry.registerAll(

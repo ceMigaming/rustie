@@ -2,6 +2,7 @@ package com.cemi.rustie.item;
 
 import com.cemi.rustie.blocks.BoulderBlock;
 import com.cemi.rustie.tileentity.TileEntityBreakable;
+import com.cemi.rustie.utility.InventoryUtilities;
 import com.google.common.collect.Multimap;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -38,13 +39,21 @@ public class ToolItem extends ItemBase {
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) {
 		if (entityLiving instanceof EntityPlayer) {
 			World world = entityLiving.world;
-			if (!((EntityPlayer) entityLiving).getCooldownTracker().hasCooldown(stack.getItem())) {
-				RayTraceResult result = rayTrace(world, (EntityPlayer) entityLiving, false);
-				if (com.cemi.rustie.utility.MathHelper.getDistance(entityLiving, result.getBlockPos()) < range) {
-					if (world.getBlockState(result.getBlockPos()).getBlock() instanceof BoulderBlock) {
-						TileEntityBreakable te = (TileEntityBreakable) world.getTileEntity(result.getBlockPos());
-						te.dealDamage(damage, woodDamage, boulderDamage, lostFraction);
-						System.out.println(te.getHealth());
+			if (!world.isRemote) {
+				if (!((EntityPlayer) entityLiving).getCooldownTracker().hasCooldown(stack.getItem())) {
+					RayTraceResult result = rayTrace(world, (EntityPlayer) entityLiving, false);
+					if (com.cemi.rustie.utility.MathHelper.getDistance(entityLiving, result.getBlockPos()) < range) {
+						if (world.getBlockState(result.getBlockPos()).getBlock() instanceof BoulderBlock) {
+							((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(stack.getItem(),
+									Math.round(1.0f / (attackSpeed / 60.0f) * 20.0f));
+							TileEntityBreakable te = (TileEntityBreakable) world.getTileEntity(result.getBlockPos());
+							te.dealDamage(damage*20, woodDamage, boulderDamage, lostFraction);
+							//System.out.println("[Rustie]: Boulder at " + result.getBlockPos() + " has " + te.getHealth() + "hp.");
+							System.out.println(te.getMaxHealth());
+							InventoryUtilities.addItem(((EntityPlayer)entityLiving).inventory, new ItemStack(te.getDispensedItem(), te.getDispensedItemQuantity()));
+							//System.out.println(te.getDispensedItemQuantity());
+							te.UpdateTileEntity();
+						}
 					}
 				}
 			}
